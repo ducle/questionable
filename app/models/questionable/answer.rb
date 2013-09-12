@@ -1,5 +1,6 @@
 module Questionable
   class Answer < ActiveRecord::Base
+    attr_accessible :user_id, :assignment_id, :option_id, :message
     belongs_to :user
     belongs_to :assignment
     belongs_to :option
@@ -14,3 +15,4 @@ module Questionable
     end
   end
 end
+

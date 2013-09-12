@@ -1,7 +1,8 @@
 module Questionable
   class Question < ActiveRecord::Base
-    has_many :options, :order => 'questionable_options.position ASC'
-    has_many :assignments
+    attr_accessible :title, :input_type, :note, :category
+    has_many :options, :order => 'questionable_options.position ASC', :dependent => :destroy
+    has_many :assignments, :dependent => :destroy
     has_many :subjects, :through => :assignments
     has_many :answers, :through => :assignments
 
@@ -25,3 +26,4 @@ module Questionable
     end
   end
 end
+
