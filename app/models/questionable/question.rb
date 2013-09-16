@@ -1,10 +1,11 @@
 module Questionable
   class Question < ActiveRecord::Base
-    attr_accessible :title, :input_type, :note, :category
+    attr_accessible :title, :input_type, :note, :category, :group_ids
     has_many :options, :order => 'questionable_options.position ASC', :dependent => :destroy
     has_many :assignments, :dependent => :destroy
     has_many :subjects, :through => :assignments
     has_many :answers, :through => :assignments
+    has_and_belongs_to_many :groups, :join_table => "groups_questionable_questions"
 
     validates_presence_of :title
 
